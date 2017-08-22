@@ -8,6 +8,8 @@ QT       += core gui
 
 greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 
+QT += bluetooth
+
 TARGET = tp_android
 TEMPLATE = app
 
@@ -34,5 +36,5 @@ FORMS += \
         mainwindow.ui
 
 CONFIG += mobility
-MOBILITY = 
+MOBILITY =
 
