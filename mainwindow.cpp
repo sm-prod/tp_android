@@ -42,7 +42,7 @@ void MainWindow::on_find_clicked()
 
 void MainWindow::deviceDiscovered(const QBluetoothDeviceInfo &device)
 {
-    ui->comboBox->addItem(device.address().toString());
+    ui->comboBox->addItem(device.name());//adress().toString());
 }
 
 /*
@@ -58,6 +58,7 @@ void MainWindow::on_comboBox_currentTextChanged(const QString &arg1)
 
 void MainWindow::on_connect_clicked()
 {
+    QString adress =
     //static const QString serviceUuid(QStringLiteral("00001101-0000-1000-8000-00805F9B34FB"));
     socket->connectToService(QBluetoothAddress(ui->comboBox->currentText()), QBluetoothUuid(QBluetoothUuid::SerialPort), QIODevice::ReadWrite);
 
