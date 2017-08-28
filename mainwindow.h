@@ -4,6 +4,7 @@
 #include <QMainWindow>
 #include <QBluetoothDeviceDiscoveryAgent>
 #include <QBluetoothSocket>
+#include <QBluetoothDeviceInfo>
 
 
 namespace Ui {
@@ -33,6 +34,7 @@ private:
     Ui::MainWindow *ui;
     QBluetoothDeviceDiscoveryAgent *agent = new QBluetoothDeviceDiscoveryAgent;
     QBluetoothSocket *socket;
+    QList <QBluetoothDeviceInfo> BT_FoundDevices;
 
     //QString string;
 };

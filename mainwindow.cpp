@@ -42,7 +42,11 @@ void MainWindow::on_find_clicked()
 
 void MainWindow::deviceDiscovered(const QBluetoothDeviceInfo &device)
 {
-    ui->comboBox->addItem(device.name());//adress().toString());
+    //ui->comboBox->addItem(device.address().toString());
+    ui->comboBox->addItem(device.name());
+    BT_FoundDevices.append(device);
+    //QString label = QString("%1 %2").arg(device.name().arg(device.address().toString()));
+    //ui->comboBox->addItem(label, Qt::MatchExactly);
 }
 
 /*
@@ -58,8 +62,18 @@ void MainWindow::on_comboBox_currentTextChanged(const QString &arg1)
 
 void MainWindow::on_connect_clicked()
 {
-    QString adress =
+    int nIndex = ui->comboBox->currentIndex();
+
+    if (nIndex != -1)
+    {
+        if (nIndex < BT_FoundDevices.count() && BT_FoundDevices.count() > 0)
+        {
+            socket->connectToService(QBluetoothAddress(BT_FoundDevices.at(nIndex).address()), QBluetoothUuid(QBluetoothUuid::SerialPort), QIODevice::ReadWrite);
+            //BT_LocalDevice->requestPairing(,QBluetoothLocalDevice::Paired);
+        }
+    }
+    //QString adress =
     //static const QString serviceUuid(QStringLiteral("00001101-0000-1000-8000-00805F9B34FB"));
-    socket->connectToService(QBluetoothAddress(ui->comboBox->currentText()), QBluetoothUuid(QBluetoothUuid::SerialPort), QIODevice::ReadWrite);
+    //socket->connectToService(QBluetoothAddress(ui->comboBox->currentText()), QBluetoothUuid(QBluetoothUuid::SerialPort), QIODevice::ReadWrite);
 
 }
