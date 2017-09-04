@@ -30,6 +30,14 @@ private slots:
 
     void on_connect_clicked();
 
+    void on_disconnect_clicked();
+
+    void on_set_type_A_clicked();
+
+    void on_set_type_B_clicked();
+
+    void on_set_type_T_clicked();
+
 private:
     Ui::MainWindow *ui;
     QBluetoothDeviceDiscoveryAgent *agent = new QBluetoothDeviceDiscoveryAgent;

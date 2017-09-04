@@ -20,7 +20,7 @@ MainWindow::MainWindow(QWidget *parent) :
     connect(agent,SIGNAL(deviceDiscovered(QBluetoothDeviceInfo)),this,SLOT(deviceDiscovered(QBluetoothDeviceInfo)));
             agent->start();
     socket = new QBluetoothSocket(QBluetoothServiceInfo::RfcommProtocol);
-
+    connect(socket, SIGNAL(readyRead()), this, SLOT(socketRead()));
     //localAdapters = QBluetoothLocalDevice::allDevices();
 
 }
@@ -30,7 +30,13 @@ MainWindow::~MainWindow()
     delete ui;
 }
 
-
+void MainWindow::socketRead()
+{
+    QByteArray data;
+    QApplication::processEvents();
+    data.append(socket->readAll());
+    writeData(data);
+}
 
 void MainWindow::on_find_clicked()
 {
@@ -76,4 +82,34 @@ void MainWindow::on_connect_clicked()
     //static const QString serviceUuid(QStringLiteral("00001101-0000-1000-8000-00805F9B34FB"));
     //socket->connectToService(QBluetoothAddress(ui->comboBox->currentText()), QBluetoothUuid(QBluetoothUuid::SerialPort), QIODevice::ReadWrite);
 
+}
+
+void MainWindow::on_disconnect_clicked()
+{
+    socket->disconnectFromService();
+}
+
+void MainWindow::on_set_type_A_clicked()
+{
+    socket.write("*set_t_A$");
+    //ui->label->setToolTip("Установлен тип A");
+}
+
+void MainWindow::writeData(QByteArray data)
+{
+    QTextCursor cur = ui->textBrowser->textCursor();
+    cur.movePosition(QTextCursor::End);
+    ui->textBrowser->setTextCursor(cur);
+    ui->textBrowser->insertPlainText(data);
+}
+
+
+void MainWindow::on_set_type_B_clicked()
+{
+    socket.write("*set_t_B$");
+}
+
+void MainWindow::on_set_type_T_clicked()
+{
+    socket.write("*set_t_T$");
 }

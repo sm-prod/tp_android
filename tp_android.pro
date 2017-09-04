@@ -35,6 +35,9 @@ HEADERS += \
 FORMS += \
         mainwindow.ui
 
-CONFIG += mobility
-MOBILITY =
+CONFIG += \
+        mobility #\
+#        windeployqt
+# CONFIG += windeployqt
+MOBILITY = connectivity
 
