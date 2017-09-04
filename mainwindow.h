@@ -38,6 +38,26 @@ private slots:
 
     void on_set_type_T_clicked();
 
+    void on_set_type_N_clicked();
+
+    void on_set_type_J_clicked();
+
+    void on_set_type_K_clicked();
+
+    void on_set_type_R_clicked();
+
+    void on_set_type_S_clicked();
+
+    void on_disp_ADCW_clicked();
+
+    void on_disp_T_cold_spot_clicked();
+
+    void on_disp_U_t_clicked();
+
+    void on_disp_U_clicked();
+
+    void on_send_String_clicked();
+
 private:
     Ui::MainWindow *ui;
     QBluetoothDeviceDiscoveryAgent *agent = new QBluetoothDeviceDiscoveryAgent;

@@ -9,6 +9,7 @@
 #include <QtBluetooth/QBluetoothDeviceDiscoveryAgent>
 #include <QtBluetooth/QBluetoothLocalDevice>
 
+uint8_t adc_i,t_i,t_u_i,adc_u_i;
 
 MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),
@@ -112,4 +113,128 @@ void MainWindow::on_set_type_B_clicked()
 void MainWindow::on_set_type_T_clicked()
 {
     socket.write("*set_t_T$");
+}
+
+void MainWindow::on_set_type_N_clicked()
+{
+    socket.write("*set_t_N$");
+}
+
+void MainWindow::on_set_type_J_clicked()
+{
+    socket.write("*set_t_J$");
+}
+
+void MainWindow::on_set_type_K_clicked()
+{
+    socket.write("*set_t_K$");
+}
+
+void MainWindow::on_set_type_R_clicked()
+{
+    socket.write("*set_t_R$");
+}
+
+void MainWindow::on_set_type_S_clicked()
+{
+    socket.write("*set_t_S$");
+}
+
+void MainWindow::on_disp_ADCW_clicked()
+{
+    switch (adc_i)
+    {
+    case 0:
+    {
+        socket->write("*ADC_ON$");
+        adc_i=1;
+        //ui->pushButton_11->setText("Отображение ADCW\nВключено");
+        break;
+    }
+    case 1:
+    {
+        socket->write("*ADC_OFF$");
+        adc_i=0;
+        //ui->pushButton_11->setText("Отображение ADCW\nВыключено");
+        break;
+    }
+    default:
+        break;
+    }
+}
+
+void MainWindow::on_disp_T_cold_spot_clicked()
+{
+    switch (t_i)
+    {
+    case 0:
+    {
+        socket->write("*t_i_ON$");
+        t_i=1;
+        //ui->pushButton_11->setText("Отображение ADCW\nВключено");
+        break;
+    }
+    case 1:
+    {
+        socket->write("*t_i_OFF$");
+        t_i=0;
+        //ui->pushButton_11->setText("Отображение ADCW\nВыключено");
+        break;
+    }
+    default:
+        break;
+    }
+}
+
+void MainWindow::on_disp_U_t_clicked()
+{
+    switch (adc_i)
+    {
+    case 0:
+    {
+        socket->write("*t_u_i_ON$");
+        adc_i=1;
+        //ui->pushButton_11->setText("Отображение ADCW\nВключено");
+        break;
+    }
+    case 1:
+    {
+        socket->write("*t_u_i_OFF$");
+        adc_i=0;
+        //ui->pushButton_11->setText("Отображение ADCW\nВыключено");
+        break;
+    }
+    default:
+        break;
+    }
+}
+
+void MainWindow::on_disp_U_clicked()
+{
+    switch (adc_i)
+    {
+    case 0:
+    {
+        socket->write("*u_i_ON$");
+        adc_i=1;
+        //ui->pushButton_11->setText("Отображение ADCW\nВключено");
+        break;
+    }
+    case 1:
+    {
+        socket->write("*u_i_OFF$");
+        adc_i=0;
+        //ui->pushButton_11->setText("Отображение ADCW\nВыключено");
+        break;
+    }
+    default:
+        break;
+    }
+}
+
+void MainWindow::on_send_String_clicked()
+{
+    QString input = ui->lineEdit->text();
+    //char send[16];
+    socket->write(qPrintable(input));
 }
