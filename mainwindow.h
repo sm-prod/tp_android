@@ -5,6 +5,7 @@
 #include <QBluetoothDeviceDiscoveryAgent>
 #include <QBluetoothSocket>
 #include <QBluetoothDeviceInfo>
+#include <QSettings>
 
 
 namespace Ui {
@@ -58,11 +59,20 @@ private slots:
 
     void on_send_String_clicked();
 
+    void socketRead();
+
+    void writeData(QByteArray data);
+
+    void writeInfo(QByteArray info);
+
+    void start_set();
+
 private:
     Ui::MainWindow *ui;
     QBluetoothDeviceDiscoveryAgent *agent = new QBluetoothDeviceDiscoveryAgent;
     QBluetoothSocket *socket;
     QList <QBluetoothDeviceInfo> BT_FoundDevices;
+    QSettings settings;// = new QSettings("set.ini",QSettings::IniFormat);
 
     //QString string;
 };
