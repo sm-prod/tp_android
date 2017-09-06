@@ -38,6 +38,6 @@ FORMS += \
 CONFIG += \
         mobility #\
 #        windeployqt
-# CONFIG += windeployqt
+#CONFIG += windeployqt
 MOBILITY = connectivity
 

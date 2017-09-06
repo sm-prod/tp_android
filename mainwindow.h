@@ -72,7 +72,7 @@ private:
     QBluetoothDeviceDiscoveryAgent *agent = new QBluetoothDeviceDiscoveryAgent;
     QBluetoothSocket *socket;
     QList <QBluetoothDeviceInfo> BT_FoundDevices;
-    QSettings settings;// = new QSettings("set.ini",QSettings::IniFormat);
+    QSettings *settings;// = new QSettings("set.ini",QSettings::IniFormat);
 
     //QString string;
 };

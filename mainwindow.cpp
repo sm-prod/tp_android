@@ -15,6 +15,7 @@ uint8_t adc_i,t_i,t_u_i,adc_u_i;
 bool mode0,mode1,mode2,mode3;
 QChar type;
 
+
 MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),
     ui(new Ui::MainWindow)
@@ -26,14 +27,14 @@ MainWindow::MainWindow(QWidget *parent) :
             agent->start();
     socket = new QBluetoothSocket(QBluetoothServiceInfo::RfcommProtocol);
     connect(socket, SIGNAL(readyRead()), this, SLOT(socketRead()));
+    settings = new QSettings("set",QSettings::NativeFormat);
     //localAdapters = QBluetoothLocalDevice::allDevices();
-    start_set();
     /*
-    settings.setValue("SET/TYPE", "A");
-    settings.setValue("MODE/MODE_ADCW", "0");
-    settings.setValue("MODE/MODE_t", "0");
-    settings.setValue("MODE/MODE_t_u", "0");
-    settings.setValue("MODE/MODE_U", "0");
+    settings->setValue("SET/TYPE", "A");
+    settings->setValue("MODE/MODE_ADCW", "0");
+    settings->setValue("MODE/MODE_t", "0");
+    settings->setValue("MODE/MODE_t_u", "0");
+    settings->setValue("MODE/MODE_U", "0");
     */
 }
 
@@ -44,11 +45,11 @@ MainWindow::~MainWindow()
 
 void MainWindow::start_set()
 {
-    type=settings.value("SET/TYPE","A").toChar();
-    mode0=settings.value("SET/MODE_ADCW",0).toBool();
-    mode1=settings.value("SET/MODE_t",0).toBool();
-    mode2=settings.value("MODE/MODE_t_u",0).toBool();
-    mode3=settings.value("MODE/MODE_U",0).toBool();
+    type=settings->value("SET/TYPE","A").toChar();
+    mode0=settings->value("SET/MODE_ADCW",0).toBool();
+    mode1=settings->value("SET/MODE_t",0).toBool();
+    mode2=settings->value("MODE/MODE_t_u",0).toBool();
+    mode3=settings->value("MODE/MODE_U",0).toBool();
     switch (type.unicode())
     {
     case 'A':
@@ -99,12 +100,14 @@ void MainWindow::start_set()
     case 0:
     {
         socket->write("*ADC_OFF$");
+        adc_i=0;
         ui->disp_ADCW->setText("Отображение\nADCW\nВыключено");
         break;
     }
     case 1:
     {
         socket->write("*ADC_ON$");
+        adc_i=1;
         ui->disp_ADCW->setText("Отображение\nADCW\nВключено");
         break;
     }
@@ -116,12 +119,14 @@ void MainWindow::start_set()
     case 0:
     {
         socket->write("*t_i_OFF$");
+        t_i=0;
         ui->disp_T_cold_spot->setText("Отображение\nt°C ХС\nВыключено");
         break;
     }
     case 1:
     {
         socket->write("*t_i_ON$");
+        t_i=1;
         ui->disp_T_cold_spot->setText("Отображение\nt°C ХС\nВключено");
         break;
     }
@@ -133,12 +138,14 @@ void MainWindow::start_set()
     case 0:
     {
         socket->write("*t_u_i_OFF$");
+        t_u_i=0;
         ui->disp_U_t->setText("Отображение\nU(t°C) ХС\nВыключено");
         break;
     }
     case 1:
     {
         socket->write("*t_u_i_ON$");
+        t_u_i=1;
         ui->disp_U_t->setText("Отображение\nU(t°C) ХС\nВключено");
         break;
     }
@@ -150,12 +157,14 @@ void MainWindow::start_set()
     case 0:
     {
         socket->write("*u_i_OFF$");
+        adc_u_i=0;
         ui->disp_U->setText("Отображение\nU\nВыключено");
         break;
     }
     case 1:
     {
         socket->write("*u_i_ON$");
+        adc_u_i=1;
         ui->disp_U->setText("Отображение\nU\nВключено");
         break;
     }
@@ -212,6 +221,7 @@ void MainWindow::on_connect_clicked()
             //BT_LocalDevice->requestPairing(,QBluetoothLocalDevice::Paired);
         }
     }
+    start_set();
     //QString adress =
     //static const QString serviceUuid(QStringLiteral("00001101-0000-1000-8000-00805F9B34FB"));
     //socket->connectToService(QBluetoothAddress(ui->comboBox->currentText()), QBluetoothUuid(QBluetoothUuid::SerialPort), QIODevice::ReadWrite);
@@ -227,8 +237,8 @@ void MainWindow::on_set_type_A_clicked()
 {
     socket->write("*set_t_A$");
     //ui->label->setToolTip("Установлен тип A");
-    settings.setValue("SET/TYPE", "A");
-    settings.sync();
+    settings->setValue("SET/TYPE", "A");
+    settings->sync();
     writeInfo("Установлен тип A");
 }
 
@@ -251,56 +261,56 @@ void MainWindow::writeInfo(QByteArray info)
 void MainWindow::on_set_type_B_clicked()
 {
     socket->write("*set_t_B$");
-    settings.setValue("SET/TYPE", "B");
-    settings.sync();
+    settings->setValue("SET/TYPE", "B");
+    settings->sync();
     writeInfo("Установлен тип B");
 }
 
 void MainWindow::on_set_type_T_clicked()
 {
     socket->write("*set_t_T$");
-    settings.setValue("SET/TYPE", "T");
-    settings.sync();
+    settings->setValue("SET/TYPE", "T");
+    settings->sync();
     writeInfo("Установлен тип T");
 }
 
 void MainWindow::on_set_type_N_clicked()
 {
     socket->write("*set_t_N$");
-    settings.setValue("SET/TYPE", "N");
-    settings.sync();
+    settings->setValue("SET/TYPE", "N");
+    settings->sync();
     writeInfo("Установлен тип N");
 }
 
 void MainWindow::on_set_type_J_clicked()
 {
     socket->write("*set_t_J$");
-    settings.setValue("SET/TYPE", "J");
-    settings.sync();
+    settings->setValue("SET/TYPE", "J");
+    settings->sync();
     writeInfo("Установлен тип J");
 }
 
 void MainWindow::on_set_type_K_clicked()
 {
     socket->write("*set_t_K$");
-    settings.setValue("SET/TYPE", "K");
-    settings.sync();
+    settings->setValue("SET/TYPE", "K");
+    settings->sync();
     writeInfo("Установлен тип K");
 }
 
 void MainWindow::on_set_type_R_clicked()
 {
     socket->write("*set_t_R$");
-    settings.setValue("SET/TYPE", "R");
-    settings.sync();
+    settings->setValue("SET/TYPE", "R");
+    settings->sync();
     writeInfo("Установлен тип R");
 }
 
 void MainWindow::on_set_type_S_clicked()
 {
     socket->write("*set_t_S$");
-    settings.setValue("SET/TYPE", "S");
-    settings.sync();
+    settings->setValue("SET/TYPE", "S");
+    settings->sync();
     writeInfo("Установлен тип S");
 }
 
@@ -312,8 +322,8 @@ void MainWindow::on_disp_ADCW_clicked()
     {
         socket->write("*ADC_ON$");
         adc_i=1;
-        settings.setValue("MODE/MODE_ADCW", 1);
-        settings.sync();
+        settings->setValue("MODE/MODE_ADCW", 1);
+        settings->sync();
         ui->disp_ADCW->setText("Отображение ADCW\nВключено");
         //writeInfo("Отображение ADCW\nВключено");
         break;
@@ -322,8 +332,8 @@ void MainWindow::on_disp_ADCW_clicked()
     {
         socket->write("*ADC_OFF$");
         adc_i=0;
-        settings.setValue("MODE/MODE_ADCW", 0);
-        settings.sync();
+        settings->setValue("MODE/MODE_ADCW", 0);
+        settings->sync();
         ui->disp_ADCW->setText("Отображение ADCW\nВыключено");
         //writeInfo("Отображение ADCW\nВыключено");
         break;
@@ -341,8 +351,8 @@ void MainWindow::on_disp_T_cold_spot_clicked()
     {
         socket->write("*t_i_ON$");
         t_i=1;
-        settings.setValue("MODE/MODE_t", 1);
-        settings.sync();
+        settings->setValue("MODE/MODE_t", 1);
+        settings->sync();
         ui->disp_T_cold_spot->setText("Отображение\nt°C ХС\nВключено");
         //writeInfo("Отображение T холодного спая\nВключено");
         break;
@@ -351,8 +361,8 @@ void MainWindow::on_disp_T_cold_spot_clicked()
     {
         socket->write("*t_i_OFF$");
         t_i=0;
-        settings.setValue("MODE/MODE_t", 0);
-        settings.sync();
+        settings->setValue("MODE/MODE_t", 0);
+        settings->sync();
         ui->disp_T_cold_spot->setText("Отображение\nt°C ХС\nВыключено");
         //writeInfo("Отображение T холодного спая\nВыключено");
         break;
@@ -370,8 +380,8 @@ void MainWindow::on_disp_U_t_clicked()
     {
         socket->write("*t_u_i_ON$");
         t_u_i=1;
-        settings.setValue("MODE/MODE_t_u", 1);
-        settings.sync();
+        settings->setValue("MODE/MODE_t_u", 1);
+        settings->sync();
         ui->disp_U_t->setText("Отображение\nU(t°C) ХС\nВключено");
         //writeInfo();
         break;
@@ -380,8 +390,8 @@ void MainWindow::on_disp_U_t_clicked()
     {
         socket->write("*t_u_i_OFF$");
         t_u_i=0;
-        settings.setValue("MODE/MODE_t_u", 0);
-        settings.sync();
+        settings->setValue("MODE/MODE_t_u", 0);
+        settings->sync();
         ui->disp_U_t->setText("Отображение\nU(t°C) ХС\nВыключено");
         //writeInfo("Отображение экв U T холодного спая\nВыключено");
         break;
@@ -399,8 +409,8 @@ void MainWindow::on_disp_U_clicked()
     {
         socket->write("*u_i_ON$");
         adc_u_i=1;
-        settings.setValue("MODE/MODE_U", 1);
-        settings.sync();
+        settings->setValue("MODE/MODE_U", 1);
+        settings->sync();
         ui->disp_U->setText("Отображение\nU\nВключено");
         //writeInfo("Отображение экв U термопары\nВключено");
         break;
@@ -409,8 +419,8 @@ void MainWindow::on_disp_U_clicked()
     {
         socket->write("*u_i_OFF$");
         adc_u_i=0;
-        settings.setValue("MODE/MODE_U", 0);
-        settings.sync();
+        settings->setValue("MODE/MODE_U", 0);
+        settings->sync();
         ui->disp_U->setText("Отображение\nU\nВыключено");
         //writeInfo("Отображение экв U термопары\nВыключено");
         break;

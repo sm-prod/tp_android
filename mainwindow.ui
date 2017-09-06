@@ -25,7 +25,7 @@
          </font>
         </property>
         <property name="toolTip">
-         <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Эквивалентное напряжение t°C холодного спая&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+         <string/>
         </property>
         <property name="text">
          <string>Отображение
@@ -42,7 +42,7 @@ U(t°C) ХС
          </font>
         </property>
         <property name="toolTip">
-         <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Температура холодного спая&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+         <string/>
         </property>
         <property name="text">
          <string>Отображение
@@ -61,7 +61,7 @@ t°C ХС
       <item row="0" column="1">
        <widget class="QLabel" name="label">
         <property name="toolTip">
-         <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;br/&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+         <string/>
         </property>
         <property name="text">
          <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p align=&quot;center&quot;&gt;&lt;span style=&quot; font-size:12pt;&quot;&gt;Установка&lt;/span&gt;&lt;/p&gt;&lt;p align=&quot;center&quot;&gt;&lt;span style=&quot; font-size:12pt;&quot;&gt;типа&lt;/span&gt;&lt;/p&gt;&lt;p align=&quot;center&quot;&gt;&lt;span style=&quot; font-size:12pt;&quot;&gt;термопары&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
@@ -77,7 +77,7 @@ t°C ХС
          </font>
         </property>
         <property name="toolTip">
-         <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Конвертированное значение ADCW в напряжение&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+         <string/>
         </property>
         <property name="text">
          <string>Отображение
@@ -89,7 +89,7 @@ U
       <item row="0" column="0">
        <widget class="QLabel" name="label_2">
         <property name="toolTip">
-         <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;br/&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+         <string/>
         </property>
         <property name="text">
          <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:12pt;&quot;&gt;Установка доп&lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot; font-size:12pt;&quot;&gt;параметров&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
@@ -105,7 +105,7 @@ U
          </font>
         </property>
         <property name="toolTip">
-         <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Квантованные показания АЦП&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+         <string/>
         </property>
         <property name="text">
          <string>Отображение
