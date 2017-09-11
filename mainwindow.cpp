@@ -48,8 +48,8 @@ void MainWindow::start_set()
     type=settings->value("SET/TYPE","A").toChar();
     mode0=settings->value("SET/MODE_ADCW",0).toBool();
     mode1=settings->value("SET/MODE_t",0).toBool();
-    mode2=settings->value("MODE/MODE_t_u",0).toBool();
-    mode3=settings->value("MODE/MODE_U",0).toBool();
+    mode2=settings->value("SET/MODE_t_u",0).toBool();
+    mode3=settings->value("SET/MODE_U",0).toBool();
     switch (type.unicode())
     {
     case 'A':
@@ -322,7 +322,7 @@ void MainWindow::on_disp_ADCW_clicked()
     {
         socket->write("*ADC_ON$");
         adc_i=1;
-        settings->setValue("MODE/MODE_ADCW", 1);
+        settings->setValue("SET/MODE_ADCW", 1);
         settings->sync();
         ui->disp_ADCW->setText("Отображение ADCW\nВключено");
         //writeInfo("Отображение ADCW\nВключено");
@@ -332,7 +332,7 @@ void MainWindow::on_disp_ADCW_clicked()
     {
         socket->write("*ADC_OFF$");
         adc_i=0;
-        settings->setValue("MODE/MODE_ADCW", 0);
+        settings->setValue("SET/MODE_ADCW", 0);
         settings->sync();
         ui->disp_ADCW->setText("Отображение ADCW\nВыключено");
         //writeInfo("Отображение ADCW\nВыключено");
@@ -351,7 +351,7 @@ void MainWindow::on_disp_T_cold_spot_clicked()
     {
         socket->write("*t_i_ON$");
         t_i=1;
-        settings->setValue("MODE/MODE_t", 1);
+        settings->setValue("SET/MODE_t", 1);
         settings->sync();
         ui->disp_T_cold_spot->setText("Отображение\nt°C ХС\nВключено");
         //writeInfo("Отображение T холодного спая\nВключено");
@@ -361,7 +361,7 @@ void MainWindow::on_disp_T_cold_spot_clicked()
     {
         socket->write("*t_i_OFF$");
         t_i=0;
-        settings->setValue("MODE/MODE_t", 0);
+        settings->setValue("SET/MODE_t", 0);
         settings->sync();
         ui->disp_T_cold_spot->setText("Отображение\nt°C ХС\nВыключено");
         //writeInfo("Отображение T холодного спая\nВыключено");
@@ -380,7 +380,7 @@ void MainWindow::on_disp_U_t_clicked()
     {
         socket->write("*t_u_i_ON$");
         t_u_i=1;
-        settings->setValue("MODE/MODE_t_u", 1);
+        settings->setValue("SET/MODE_t_u", 1);
         settings->sync();
         ui->disp_U_t->setText("Отображение\nU(t°C) ХС\nВключено");
         //writeInfo();
@@ -390,7 +390,7 @@ void MainWindow::on_disp_U_t_clicked()
     {
         socket->write("*t_u_i_OFF$");
         t_u_i=0;
-        settings->setValue("MODE/MODE_t_u", 0);
+        settings->setValue("SET/MODE_t_u", 0);
         settings->sync();
         ui->disp_U_t->setText("Отображение\nU(t°C) ХС\nВыключено");
         //writeInfo("Отображение экв U T холодного спая\nВыключено");
@@ -409,7 +409,7 @@ void MainWindow::on_disp_U_clicked()
     {
         socket->write("*u_i_ON$");
         adc_u_i=1;
-        settings->setValue("MODE/MODE_U", 1);
+        settings->setValue("SET/MODE_U", 1);
         settings->sync();
         ui->disp_U->setText("Отображение\nU\nВключено");
         //writeInfo("Отображение экв U термопары\nВключено");
@@ -419,7 +419,7 @@ void MainWindow::on_disp_U_clicked()
     {
         socket->write("*u_i_OFF$");
         adc_u_i=0;
-        settings->setValue("MODE/MODE_U", 0);
+        settings->setValue("SET/MODE_U", 0);
         settings->sync();
         ui->disp_U->setText("Отображение\nU\nВыключено");
         //writeInfo("Отображение экв U термопары\nВыключено");
