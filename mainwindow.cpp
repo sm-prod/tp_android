@@ -55,41 +55,49 @@ void MainWindow::start_set()
     case 'A':
     {
         socket->write("*set_t_A$");
+        writeInfo("Установлен тип A\n");
         break;
     }
     case 'B':
     {
         socket->write("*set_t_B$");
+        writeInfo("Установлен тип B\n");
         break;
     }
     case 'J':
     {
         socket->write("*set_t_J$");
+        writeInfo("Установлен тип J\n");
         break;
     }
     case 'K':
     {
         socket->write("*set_t_K$");
+        writeInfo("Установлен тип K\n");
         break;
     }
     case 'N':
     {
         socket->write("*set_t_N$");
+        writeInfo("Установлен тип N\n");
         break;
     }
     case 'R':
     {
         socket->write("*set_t_R$");
+        writeInfo("Установлен тип R\n");
         break;
     }
     case 'S':
     {
         socket->write("*set_t_S$");
+        writeInfo("Установлен тип S\n");
         break;
     }
     case 'T':
     {
         socket->write("*set_t_T$");
+        writeInfo("Установлен тип T\n");
         break;
     }
     default:
@@ -231,15 +239,7 @@ void MainWindow::on_connect_clicked()
 void MainWindow::on_disconnect_clicked()
 {
     socket->disconnectFromService();
-}
-
-void MainWindow::on_set_type_A_clicked()
-{
-    socket->write("*set_t_A$");
-    //ui->label->setToolTip("Установлен тип A");
-    settings->setValue("SET/TYPE", "A");
-    settings->sync();
-    writeInfo("Установлен тип A");
+    ui->infoBrowser->clear();
 }
 
 void MainWindow::writeData(QByteArray data)
@@ -258,12 +258,21 @@ void MainWindow::writeInfo(QByteArray info)
     ui->infoBrowser->insertPlainText(info);
 }
 
+void MainWindow::on_set_type_A_clicked()
+{
+    socket->write("*set_t_A$");
+    //ui->label->setToolTip("Установлен тип A");
+    settings->setValue("SET/TYPE", "A");
+    settings->sync();
+    writeInfo("Установлен тип A\n");
+}
+
 void MainWindow::on_set_type_B_clicked()
 {
     socket->write("*set_t_B$");
     settings->setValue("SET/TYPE", "B");
     settings->sync();
-    writeInfo("Установлен тип B");
+    writeInfo("Установлен тип B\n");
 }
 
 void MainWindow::on_set_type_T_clicked()
@@ -271,7 +280,7 @@ void MainWindow::on_set_type_T_clicked()
     socket->write("*set_t_T$");
     settings->setValue("SET/TYPE", "T");
     settings->sync();
-    writeInfo("Установлен тип T");
+    writeInfo("Установлен тип T\n");
 }
 
 void MainWindow::on_set_type_N_clicked()
@@ -279,7 +288,7 @@ void MainWindow::on_set_type_N_clicked()
     socket->write("*set_t_N$");
     settings->setValue("SET/TYPE", "N");
     settings->sync();
-    writeInfo("Установлен тип N");
+    writeInfo("Установлен тип N\n");
 }
 
 void MainWindow::on_set_type_J_clicked()
@@ -287,7 +296,7 @@ void MainWindow::on_set_type_J_clicked()
     socket->write("*set_t_J$");
     settings->setValue("SET/TYPE", "J");
     settings->sync();
-    writeInfo("Установлен тип J");
+    writeInfo("Установлен тип J\n");
 }
 
 void MainWindow::on_set_type_K_clicked()
@@ -295,7 +304,7 @@ void MainWindow::on_set_type_K_clicked()
     socket->write("*set_t_K$");
     settings->setValue("SET/TYPE", "K");
     settings->sync();
-    writeInfo("Установлен тип K");
+    writeInfo("Установлен тип K\n");
 }
 
 void MainWindow::on_set_type_R_clicked()
@@ -303,7 +312,7 @@ void MainWindow::on_set_type_R_clicked()
     socket->write("*set_t_R$");
     settings->setValue("SET/TYPE", "R");
     settings->sync();
-    writeInfo("Установлен тип R");
+    writeInfo("Установлен тип R\n");
 }
 
 void MainWindow::on_set_type_S_clicked()
@@ -311,7 +320,7 @@ void MainWindow::on_set_type_S_clicked()
     socket->write("*set_t_S$");
     settings->setValue("SET/TYPE", "S");
     settings->sync();
-    writeInfo("Установлен тип S");
+    writeInfo("Установлен тип S\n");
 }
 
 void MainWindow::on_disp_ADCW_clicked()

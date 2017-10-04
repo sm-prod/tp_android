@@ -10,7 +10,7 @@ greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 
 QT += bluetooth
 
-TARGET = tp_android
+TARGET = Termopara
 TEMPLATE = app
 
 # The following define makes your compiler emit warnings if you use
@@ -40,4 +40,15 @@ CONFIG += \
 #        windeployqt
 #CONFIG += windeployqt
 MOBILITY = connectivity
+
+DISTFILES += \
+    android/AndroidManifest.xml \
+    android/gradle/wrapper/gradle-wrapper.jar \
+    android/gradlew \
+    android/res/values/libs.xml \
+    android/build.gradle \
+    android/gradle/wrapper/gradle-wrapper.properties \
+    android/gradlew.bat
+
+ANDROID_PACKAGE_SOURCE_DIR = $$PWD/android
 
