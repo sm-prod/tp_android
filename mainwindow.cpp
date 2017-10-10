@@ -12,8 +12,6 @@
 #include <QChar>
 
 uint8_t adc_i,t_i,t_u_i,adc_u_i;
-bool mode0,mode1,mode2,mode3;
-
 
 MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),
@@ -45,10 +43,10 @@ MainWindow::~MainWindow()
 void MainWindow::start_set()
 {
     QChar type=settings->value("SET/TYPE","A").toChar();
-    mode0=settings->value("SET/MODE_ADCW",0).toBool();
-    mode1=settings->value("SET/MODE_t",0).toBool();
-    mode2=settings->value("SET/MODE_t_u",0).toBool();
-    mode3=settings->value("SET/MODE_U",0).toBool();
+    bool mode0=settings->value("SET/MODE_ADCW",0).toBool();
+    bool mode1=settings->value("SET/MODE_t",0).toBool();
+    bool mode2=settings->value("SET/MODE_t_u",0).toBool();
+    bool mode3=settings->value("SET/MODE_U",0).toBool();
     switch (type.unicode())
     {
     case 'A':
@@ -359,7 +357,7 @@ void MainWindow::on_disp_T_cold_spot_clicked()
     {
         socket->write("*t_i_ON$");
         t_i=1;
-        settings->setValue("SET/MODE_t", 1);
+        settings->setValue("SET/0_t", 1);
         settings->sync();
         ui->disp_T_cold_spot->setText("Отображение\nt°C ХС\nВключено");
         //writeInfo("Отображение T холодного спая\nВключено");
