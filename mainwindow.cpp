@@ -13,7 +13,6 @@
 
 uint8_t adc_i,t_i,t_u_i,adc_u_i;
 bool mode0,mode1,mode2,mode3;
-QChar type;
 
 
 MainWindow::MainWindow(QWidget *parent) :
@@ -45,7 +44,7 @@ MainWindow::~MainWindow()
 
 void MainWindow::start_set()
 {
-    type=settings->value("SET/TYPE","A").toChar();
+    QChar type=settings->value("SET/TYPE","A").toChar();
     mode0=settings->value("SET/MODE_ADCW",0).toBool();
     mode1=settings->value("SET/MODE_t",0).toBool();
     mode2=settings->value("SET/MODE_t_u",0).toBool();

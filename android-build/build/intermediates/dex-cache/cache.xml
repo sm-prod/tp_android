@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<items version="2" >
+
+    <item
+        is-multidex="false"
+        jar="C:\project\TP\tp_android\android-build\libs\QtAndroidBluetooth-bundled.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="26.0.1"
+        sha1="f7b37b7defa1c9fd6e1b11036b638f5644719d28">
+        <dex dex="C:\project\TP\tp_android\android-build\build\intermediates\pre-dexed\debug\QtAndroidBluetooth-bundled_a477f1d2565a256da4fb76965f3ca0310a5f6a13.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="C:\project\TP\tp_android\android-build\libs\QtAndroid-bundled.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="26.0.1"
+        sha1="488ad8d72ccd1f85e261a5a74717918cb86f7d65">
+        <dex dex="C:\project\TP\tp_android\android-build\build\intermediates\pre-dexed\debug\QtAndroid-bundled_5465b5402fb15bcc7800ee5262f1aa24c22ba7f5.jar" />
+    </item>
+
+</items>
